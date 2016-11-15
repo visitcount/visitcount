@@ -1,5 +1,5 @@
 from django.db import transaction
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
 from .models import Item, ItemView
 from .common.user_uid import get_user_uid, make_user_uid, set_user_uid_cookie
@@ -33,3 +33,8 @@ class ItemDetail(DetailView):
 
     def get_queryset(self):
         return self.model._default_manager.select_for_update()
+
+
+class ItemList(ListView):
+
+    model = Item
